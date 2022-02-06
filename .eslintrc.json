@@ -13,6 +13,7 @@
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
+    "project": "./tsconfig.json",
     "ecmaFeatures": {
       "jsx": true
     },
@@ -20,71 +21,117 @@
     "sourceType": "module"
   },
   "plugins": [
+    "import",
+    "prettier",
     "react",
     "react-hooks",
     "@typescript-eslint"
   ],
   "rules": {
-    "react/jsx-props-no-spreading": "off",
+    "@typescript-eslint/comma-dangle": "off",
+    "@typescript-eslint/no-loop-func": "off",
+    "@typescript-eslint/no-redeclare": "off",
+    "@typescript-eslint/no-shadow": "off",
+    "@typescript-eslint/no-console": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "no-console": "off",
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": "off",
+    "import/no-unresolved": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "useTabs": false,
+        "printWidth": 80,
+        "tabWidth": 2,
+        "singleQuote": true,
+        "trailingComma": "all",
+        "semi": true
+      }
+    ],
+    "object-curly-spacing": [
+      "warn",
+      "always"
+    ],
+    "object-curly-newline": "off",
+    "no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "args": "none"
+      }
+    ],
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "args": "none"
+      }
+    ],
+    "@typescript-eslint/no-explicit-any": "off",
     "max-len": [
       "warn",
       {
-        "code": 90
+        "code": 80,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true,
+        "ignoreComments": true
       }
     ],
-    "no-use-before-define": "off",
-    "no-shadow": "off",
-    "no-undef": "off",
-    "@typescript-eslint/no-use-before-define": [
-      "error"
-    ],
-    "@typescript-eslint/no-shadow": [
-      "error"
-    ],
-    "@typescript-eslint/explicit-function-return-type": [
+    "no-plusplus": [
       "error",
       {
-        "allowExpressions": true
+        "allowForLoopAfterthoughts": true
       }
     ],
-    "import/extensions": [
+    "react/jsx-key": "error",
+    "import/no-extraneous-dependencies": [
       "error",
-      "ignorePackages",
       {
-        "ts": "never",
-        "tsx": "never"
+        "devDependencies": [
+          "**/*.test.js",
+          "**/*.test.jsx",
+          "**/*.test.ts",
+          "**/*.test.tsx",
+          "src/tests/**/*"
+        ]
       }
     ],
-    "import/prefer-default-export": "off",
-    "react/prop-types": "off",
-    "react/jsx-uses-react": "off",
+    "import/extensions": "off",
     "react/jsx-filename-extension": [
-      "warn",
+      2,
       {
         "extensions": [
+          ".js",
+          ".jsx",
+          ".ts",
           ".tsx"
         ]
       }
     ],
-    "react/react-in-jsx-scope": "off",
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
-    "object-curly-newline": [
+    "react/jsx-props-no-spreading": "off",
+    "import/prefer-default-export": "off",
+    "import/no-named-as-default-member": "off",
+    "react/jsx-boolean-value": "off",
+    "react/prop-types": "off",
+    "react/no-unescaped-entities": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "react/jsx-wrap-multilines": "off",
+    "react/destructuring-assignment": "off",
+    "react/jsx-no-duplicate-props": "off",
+    "react/jsx-curly-newline": "off",
+    "radix": "off",
+    "comma-dangle": [
       "error",
-      {
-        "ObjectExpression": "always",
-        "ObjectPattern": {
-          "multiline": true
-        },
-        "ImportDeclaration": {
-          "multiline": true
-        },
-        "ExportDeclaration": {
-          "multiline": true,
-          "minProperties": 3
-        }
-      }
-    ]
+      "always-multiline"
+    ],
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/ban-ts-ignore": "off",
+    "no-underscore-dangle": "off",
+    "@typescript-eslint/no-underscore-dangle": "off",
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
+    "implicit-arrow-linebreak": "off"
   },
   "settings": {
     "import/resolver": {
@@ -99,5 +146,8 @@
       "typescript": {
       }
     }
+  },
+  "globals": {
+    "JSX": true
   }
 }
