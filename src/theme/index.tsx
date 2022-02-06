@@ -1,0 +1,178 @@
+import { extendTheme } from '@chakra-ui/react';
+
+const theme = extendTheme({
+  styles: {
+    global: {
+      // styles for the `body`
+      body: {
+        height: '100%',
+        color: '#212121',
+      },
+      html: {
+        height: '100%',
+      },
+      '#root': {
+        height: '100%',
+      },
+    },
+  },
+  fonts: {
+    heading: 'lato',
+    body: 'lato',
+  },
+  colors: {
+    custom: {
+      Alabaster: '#FAF8EC',
+      LightBlue: '#82C5F3',
+      Blue: '#259BE9',
+      SeaBlue: '#0F6299',
+      PictonBlue: '#53B0EE',
+      LightYellow: '#FEF19F',
+      Yellow: '#FDDA05',
+      LightBlack: '#666666',
+      NormalBlack: '#4D4D4D',
+      Black: '#212121',
+      White50: '#FFFFFF80',
+      White: '#FFFFFF',
+      OffWhite: '#FDFBF6',
+      LightGray: '#999999',
+      Gray: '#808080',
+      DarkGray: '#333333',
+      Green: '#51DACF',
+      DarkSnow: '#EFEFEF',
+      Snow: '#F9F9F9',
+      LightSnow: '#F5F5F5',
+      containerBg: '#DFF0FC',
+      pdfBg: '#F9F9F9',
+      pdfTitleBg: 'rgba(223, 240, 252, 0.5)',
+      progressInner: '#FEF19F',
+      facebook: '#1877F2',
+    },
+    progressBar: {
+      500: '#259BE9',
+      bg: '#EFEFEF',
+    },
+    slider: {
+      filledTrack: '#FDDA05',
+      track: '#FDDA0566',
+    },
+    input: {
+      gray: '#999999',
+      textGray: '#808080',
+    },
+    reference: {
+      statusBrownBg: '#EFEFEF',
+      textGray: '#808080',
+      textBrown: '#3A5519',
+      statusGreenBg: '#9BDF46',
+      containerBg: '#CBCBCB',
+      lightYellow: '#FAF8EC',
+      checkboxTick: '#51DACF',
+    },
+  },
+  textStyles: {
+    heading1: {
+      fontFamily: 'Raleway',
+      fontSize: '32px',
+      fontWeight: 'bold',
+      lineHeight: '38px',
+    },
+    heading2: {
+      fontFamily: 'Raleway',
+      fontSize: '24px',
+      fontWeight: 600,
+      lineHeight: '28px',
+    },
+    heading3: {
+      fontFamily: 'Raleway',
+      fontSize: '20px',
+      fontWeight: 600,
+      lineHeight: '24px',
+    },
+    subtitle: {
+      fontFamily: 'lato',
+      fontSize: '20px',
+      fontWeight: 500,
+      lineHeight: '29px',
+    },
+    body: {
+      fontFamily: 'lato',
+      fontSize: '16px',
+      fontWeight: 500,
+      lineHeight: '19px',
+      letterSpacing: '0.02em',
+    },
+    small: {
+      fontFamily: 'lato',
+      fontSize: '14px',
+      fontWeight: 500,
+      lineHeight: '16.8px',
+      letterSpacing: '0.05em',
+    },
+    preTitle: {
+      fontFamily: 'lato',
+      fontSize: '12px',
+      fontWeight: 700,
+      lineHeight: '14px',
+      letterSpacing: '0.03em',
+    },
+    notification: {
+      fontFamily: 'lato',
+      fontWeight: 700,
+      fontSize: '16px',
+      lineHeight: '19.2px',
+      color: 'custom.levoBlack',
+    },
+    userProfileName: {
+      fontFamily: 'montserrat',
+      fontSize: '32px',
+      fontWeight: 700,
+      lineHeight: '39.01px',
+      color: 'custom.levoBlue',
+    },
+    userProfileText: {
+      fontFamily: 'montserrat',
+      fontSize: '12px',
+      fontWeight: 400,
+      lineHeight: '14.63px',
+      color: 'custom.levoBlack',
+    },
+    userProfileTitle: {
+      fontFamily: 'montserrat',
+      fontSize: '12px',
+      fontWeight: 700,
+      lineHeight: '14.63px',
+      color: 'custom.levoSeaBlue',
+      textTransform: 'uppercase',
+    },
+    referencePdfName: {
+      fontWeight: 700,
+      fontFamily: 'montserrat',
+      fontSize: '16px',
+      lineHeight: '19.5px',
+      color: 'custom.levoBlack',
+    },
+    referencePdfText: {
+      fontWeight: 700,
+      fontFamily: 'montserrat',
+      fontSize: '12px',
+      lineHeight: '14.63px',
+      color: 'custom.levoBlack',
+    },
+    text1: {
+      fontWeight: 500,
+      fontFamily: 'lato',
+      fontSize: '18px',
+      lineHeight: '21.6px',
+      color: 'custom.levoBlack',
+    },
+    text4: {
+      fontWeight: 500,
+      fontFamily: 'lato',
+      fontSize: '10px',
+      lineHeight: '12px',
+      color: 'custom.levoBlack',
+    },
+  },
+});
+export { theme };
