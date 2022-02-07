@@ -131,7 +131,9 @@
     "@typescript-eslint/no-underscore-dangle": "off",
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
-    "implicit-arrow-linebreak": "off"
+    "implicit-arrow-linebreak": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
   },
   "settings": {
     "import/resolver": {
