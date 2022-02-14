@@ -26,7 +26,7 @@ const LandingPage = (): JSX.Element => {
         />
         <Flex direction="column" mb={10} p={4}>
           <Text
-            textAlign={useWindowDimensions().width < 1074 ? 'center' : 'left'}
+            textAlign="center"
             textStyle="landingPageHeading"
             fontSize={leastSquaresFitCalc(
               new Map([
@@ -42,7 +42,7 @@ const LandingPage = (): JSX.Element => {
             )}
             opacity={0.7}
           >
-            PulpSpit
+            PulpsPit
           </Text>
           <Text
             textStyle="heading2"
