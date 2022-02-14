@@ -9,13 +9,17 @@ export interface RouteObject extends RouteProps {
 
 const Home = lazy(() => import('containers/Home'));
 const Landing = lazy(() => import('containers/LandingPage'));
+const Dashboard = lazy(() => import('containers/Dashboard'));
 
 const PUBLIC_ROUTES: RouteObject[] = [
   {
     exact: true,
-    path: '/home',
-    component: Home,
+    path: '/dashboard',
+    component: Dashboard,
   },
+];
+
+const AUTH_ROUTES: RouteObject[] = [
   {
     exact: true,
     path: '/',
@@ -23,4 +27,12 @@ const PUBLIC_ROUTES: RouteObject[] = [
   },
 ];
 
-export { PUBLIC_ROUTES };
+const PRIVATE_ROUTES: RouteObject[] = [
+  {
+    exact: true,
+    path: '/home',
+    component: Home,
+  },
+];
+
+export { PRIVATE_ROUTES, PUBLIC_ROUTES, AUTH_ROUTES };
