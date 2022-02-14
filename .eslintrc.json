@@ -8,6 +8,9 @@
     "plugin:react/recommended",
     "plugin:prettier/recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
     "prettier/prettier",
     "airbnb"
   ],
@@ -33,11 +36,13 @@
     "@typescript-eslint/no-redeclare": "off",
     "@typescript-eslint/no-shadow": "off",
     "@typescript-eslint/no-console": "off",
+    "import/no-named-as-default": 0,
     "@typescript-eslint/no-non-null-assertion": "off",
     "no-console": "off",
     "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": "off",
     "import/no-unresolved": "off",
+    "arrow-body-style": "off",
     "prettier/prettier": [
       "error",
       {
@@ -86,7 +91,7 @@
     ],
     "react/jsx-key": "error",
     "import/no-extraneous-dependencies": [
-      "error",
+      "off",
       {
         "devDependencies": [
           "**/*.test.js",
@@ -136,13 +141,31 @@
     "react-hooks/exhaustive-deps": "warn"
   },
   "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [
+        ".ts",
+        ".tsx"
+      ]
+    },
     "import/resolver": {
+      "typescript": {},
       "node": {
         "extensions": [
           ".js",
           ".jsx",
           ".ts",
           ".tsx"
+        ],
+        "paths": [
+          "src",
+          "src/components",
+          "node_modules/",
+          "node_modules/@types"
+        ],
+        "moduleDirectory": [
+          "node_modules",
+          "src/",
+          "./"
         ]
       },
       "typescript": {
