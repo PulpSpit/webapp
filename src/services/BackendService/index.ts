@@ -3,14 +3,20 @@ import { auth } from 'firebase';
 
 export namespace BackendService {
   const axiosInstance = axios.create({
-    baseURL: 'http://localhost:8080',
+    baseURL: process.env.REACT_APP_BACKEND_URL,
   });
 
   axiosInstance.interceptors.request.use(async (value) => {
     const token = await auth.currentUser?.getIdToken(true).catch((err) => {
       console.log(err);
     });
-    return { ...value, headers: { ...value.headers, authtoken: token } };
+    return {
+      ...value,
+      headers: {
+        ...value.headers,
+        authtoken: token,
+      },
+    };
   });
 
   export const getUser = () => {
