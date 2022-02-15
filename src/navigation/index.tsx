@@ -7,18 +7,16 @@ import {
   Redirect,
 } from 'react-router-dom';
 import Loader from 'containers/Loader';
-import { Suspense, useState } from 'react';
+import { Suspense } from 'react';
 import { PRIVATE_ROUTES, PUBLIC_ROUTES, AUTH_ROUTES } from './routes';
+import { useAuthContext } from '../context/AuthProvider';
 
 interface RouteType extends RouteProps {
   component: any;
 }
 
 const PrivateRoute = ({ component: Component, ...rest }: RouteType) => {
-  const { user, userSignedOut } = {
-    user: true,
-    userSignedOut: false,
-  };
+  const { user, userSignedOut } = useAuthContext();
   return (
     <Route
       {...rest}
@@ -61,7 +59,7 @@ const AuthRoute = ({
   component: Component,
   ...rest
 }: RouteType): JSX.Element => {
-  const [user, setUser] = useState(true);
+  const { user } = useAuthContext();
   return (
     <Route
       {...rest}

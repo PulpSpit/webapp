@@ -8,20 +8,25 @@ import {
 import {
   User,
   getRedirectResult,
+  getAdditionalUserInfo,
   signInWithRedirect,
   FacebookAuthProvider,
 } from 'firebase/auth';
 import { auth, facebookAuthProvider } from 'firebase';
-import axios from 'axios';
 import {
   SCOPE_USER_EMAIL,
   SCOPE_USER_FRIEND,
   SCOPE_USER_GENDER,
   SCOPE_USER_PUBLIC_PROFILE,
 } from 'constant';
+import { BackendService } from 'services/BackendService';
 
 interface ProviderProps {
-  user: User;
+  user: User | null;
+  userData: any;
+  userSignedOut: boolean;
+  getUserData: () => void;
+  addUser: (token: string) => void;
   signInWithFacebook: () => void;
 }
 
@@ -36,43 +41,21 @@ export const AuthProvider = ({
   children: ReactNode;
 }): JSX.Element => {
   const [user, setUser] = useState<User | null>(null);
+  const [userData, setUserData] = useState(null);
+  const [userSignedOut, setUserSignedOut] = useState<boolean>(false);
+
   useEffect(() => {
     getRedirectResult(auth)
-      .then((result) => {
-        if (result) {
-          const credential = FacebookAuthProvider.credentialFromResult(result);
-          auth.currentUser?.getIdToken(true).then((res) => {
-            axios
-              .request({
-                url: 'http://localhost:8080/users',
-                method: 'post',
-                headers: {
-                  authtoken: res,
-                  facebookaccesstoken: credential?.accessToken as string,
-                },
-              })
-              .then((ress) => {
-                console.log(ress);
-                axios
-                  .request({
-                    url: 'http://localhost:8080/users',
-                    method: 'get',
-                    headers: {
-                      authtoken: res,
-                    },
-                  })
-                  .then((resss) => {
-                    console.log(resss.data);
-                  });
-              })
-              .catch((err) => {
-                console.log(err);
-              });
-          });
-        }
+      .then(async (result) => {
+        if (!result) return;
+        const { accessToken } =
+          FacebookAuthProvider.credentialFromResult(result)!;
+        const { isNewUser } = getAdditionalUserInfo(result)!;
+        if (isNewUser) await addUser(accessToken as string);
+        await getUserData();
       })
-      .catch((e) => {
-        console.log(e);
+      .catch((err) => {
+        console.log(err);
       });
   });
 
@@ -80,7 +63,6 @@ export const AuthProvider = ({
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     return auth.onAuthStateChanged(async (newUser) => {
       setUser(newUser);
-      console.log(newUser);
     });
   });
 
@@ -89,26 +71,31 @@ export const AuthProvider = ({
     facebookAuthProvider.addScope(SCOPE_USER_GENDER);
     facebookAuthProvider.addScope(SCOPE_USER_EMAIL);
     facebookAuthProvider.addScope(SCOPE_USER_PUBLIC_PROFILE);
-    signInWithRedirect(auth, facebookAuthProvider);
+    signInWithRedirect(auth, facebookAuthProvider).catch((err) => {
+      console.log(err);
+    });
   };
-  // const userData = () => {
-  //   auth.currentUser?.getIdToken(true).then((token) => {
-  //     axios({
-  //       baseURL: 'https://funny-hound-92.loca.lt',
-  //       url: '/users',
-  //       method: 'GET',
-  //       headers: {
-  //         authToken: token,
-  //       },
-  //     })
-  //       .then((data) => console.log(data))
-  //       .catch((e) => console.log(e));
-  //   });
-  // };
+
+  const getUserData = async () => {
+    const response = await BackendService.getUser().catch((err) => {
+      console.log(err);
+    });
+    if (!response) return;
+    setUserData(response.data);
+  };
+
+  const addUser = async (facebookAccessToken: string) =>
+    BackendService.addUser(facebookAccessToken).catch((err) => {
+      console.log(err);
+    });
 
   const value = {
+    user,
+    userData,
+    userSignedOut,
+    getUserData,
+    addUser,
     signInWithFacebook,
-    // userData,
   };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

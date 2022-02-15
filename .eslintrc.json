@@ -33,6 +33,7 @@
   "rules": {
     "@typescript-eslint/comma-dangle": "off",
     "@typescript-eslint/no-loop-func": "off",
+    "@typescript-eslint/no-namespace": "off",
     "@typescript-eslint/no-redeclare": "off",
     "@typescript-eslint/no-shadow": "off",
     "@typescript-eslint/no-console": "off",
@@ -138,7 +139,8 @@
     "react/react-in-jsx-scope": "off",
     "implicit-arrow-linebreak": "off",
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn"
+    "react-hooks/exhaustive-deps": "warn",
+    "operator-linebreak": "off"
   },
   "settings": {
     "import/parsers": {
@@ -167,8 +169,6 @@
           "src/",
           "./"
         ]
-      },
-      "typescript": {
       }
     }
   },
