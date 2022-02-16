@@ -22,14 +22,14 @@ export namespace BackendService {
   export const getUser = () => {
     return axiosInstance.request({
       method: 'get',
-      url: '/users',
+      url: '/api/users',
     });
   };
 
   export const addUser = (facebookaccesstoken: string) => {
     return axiosInstance.request({
       method: 'post',
-      url: '/users',
+      url: '/api/users',
       headers: {
         facebookaccesstoken,
       },
