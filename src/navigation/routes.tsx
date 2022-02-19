@@ -11,13 +11,7 @@ const Home = lazy(() => import('containers/Home'));
 const Landing = lazy(() => import('containers/LandingPage'));
 const Dashboard = lazy(() => import('containers/Dashboard'));
 
-const PUBLIC_ROUTES: RouteObject[] = [
-  {
-    exact: true,
-    path: '/dashboard',
-    component: Dashboard,
-  },
-];
+const PUBLIC_ROUTES: RouteObject[] = [];
 
 const AUTH_ROUTES: RouteObject[] = [
   {
@@ -32,6 +26,11 @@ const PRIVATE_ROUTES: RouteObject[] = [
     exact: true,
     path: '/home',
     component: Home,
+  },
+  {
+    exact: true,
+    path: '/dashboard',
+    component: Dashboard,
   },
 ];
 
