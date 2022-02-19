@@ -20,14 +20,9 @@ import {
   SCOPE_USER_PUBLIC_PROFILE,
 } from 'constant';
 import { BackendService } from 'services/BackendService';
-
-interface ProviderProps {
+// eslint-disable-next-line no-undef
+interface ProviderProps extends AuthProviderProps {
   user: User | null;
-  userData: any;
-  userSignedOut: boolean;
-  getUserData: () => void;
-  addUser: (token: string) => void;
-  signInWithFacebook: () => void;
 }
 
 const AuthContext = createContext<Partial<ProviderProps>>({});
@@ -43,8 +38,10 @@ export const AuthProvider = ({
   const [user, setUser] = useState<User | null>(null);
   const [userData, setUserData] = useState(null);
   const [userSignedOut, setUserSignedOut] = useState<boolean>(false);
+  const [authLoading, setAuthLoading] = useState<boolean>(false);
 
   useEffect(() => {
+    setAuthLoading(true);
     getRedirectResult(auth)
       .then(async (result) => {
         if (!result) return;
@@ -57,14 +54,15 @@ export const AuthProvider = ({
       .catch((err) => {
         console.log(err);
       });
-  });
+  }, []);
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     return auth.onAuthStateChanged(async (newUser) => {
       setUser(newUser);
+      setAuthLoading(false);
     });
-  });
+  }, []);
 
   const signInWithFacebook = () => {
     facebookAuthProvider.addScope(SCOPE_USER_FRIEND);
@@ -89,6 +87,11 @@ export const AuthProvider = ({
       console.log(err);
     });
 
+  const logOut = async () => {
+    await auth.signOut();
+    setUserSignedOut(true);
+  };
+
   const value = {
     user,
     userData,
@@ -96,6 +99,7 @@ export const AuthProvider = ({
     getUserData,
     addUser,
     signInWithFacebook,
+    logOut,
   };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
