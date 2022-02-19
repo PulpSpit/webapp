@@ -20,3 +20,13 @@ type ReferValues = {
   FemaleFriend: 'string' | '';
   MaleFriend: 'string' | '';
 };
+
+interface AuthProviderProps {
+  userData: any;
+  userSignedOut: boolean;
+  getUserData: () => void;
+  addUser: (token: string) => void;
+  signInWithFacebook: () => void;
+  logOut: () => void;
+  authLoading: boolean;
+}
