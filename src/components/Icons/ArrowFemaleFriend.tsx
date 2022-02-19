@@ -1,4 +1,4 @@
-const ArrowFemaleFriend = (): JSX.Element => {
+export const ArrowFemaleFriend = (): JSX.Element => {
   return (
     <svg
       width="236"
@@ -34,5 +34,3 @@ const ArrowFemaleFriend = (): JSX.Element => {
     </svg>
   );
 };
-
-export default ArrowFemaleFriend;
