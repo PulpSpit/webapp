@@ -6,7 +6,7 @@ import {
   withRouter,
   Redirect,
 } from 'react-router-dom';
-import Loader from 'containers/Loader';
+import Loader from 'components/Loader';
 import { Suspense } from 'react';
 import { PRIVATE_ROUTES, PUBLIC_ROUTES, AUTH_ROUTES } from './routes';
 import { useAuthContext } from '../context/AuthProvider';
